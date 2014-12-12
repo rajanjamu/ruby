@@ -3,17 +3,26 @@ def flamesCount(name1, name2)
 	name2 = name2.downcase.split("")
 	i = 0
 	j = 0
+
+	# Do not increement index of first name if there is a match
+	flag = false
+	
 	while i < name1.length
 		while j < name2.length
 			if name1[i] == name2[j]
 				name1.delete_at(i)
 				name2.delete_at(j)
+				flag = true
+				break
 			end
 			j += 1
 		end
-		i += 1
+		i += 1 if flag != true
+		flag = false
 		j = 0
+		puts "#{name1} #{name2}"
 	end
+	puts name1.length + name2.length
 	return name1.length + name2.length
 end
 
@@ -27,8 +36,8 @@ def flamesGame(name1, name2)
 		flames.delete_at(currIndex)
 		lastIndex = currIndex
 		i -= 1
-		# print flames
-		# print "\n"
+		print flames
+		print "\n"
 	end
 	print flamesName(flames[0])
 end
